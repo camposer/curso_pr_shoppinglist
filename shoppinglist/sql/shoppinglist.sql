@@ -6,10 +6,13 @@ CREATE TABLE shopping_user(
 	CONSTRAINT uc_login UNIQUE (login)
 );
 
-CREATE TABLE shopping_list(
+INSERT INTO shopping_user(login, password) VALUES('juan', '123');
+INSERT INTO shopping_user(login, password) VALUES('maria', '456');
+
+CREATE TABLE shopping_item(
 	id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 	shopping_user_id INT NOT NULL,
-	item VARCHAR(100) NOT NULL,
+	name VARCHAR(100) NOT NULL,
 	status INT NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (shopping_user_id) REFERENCES shopping_user(id)

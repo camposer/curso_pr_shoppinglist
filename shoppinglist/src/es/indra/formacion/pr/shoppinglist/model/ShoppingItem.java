@@ -5,29 +5,32 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the SHOPPING_LIST database table.
+ * The persistent class for the SHOPPING_ITEM database table.
  * 
  */
 @Entity
-@Table(name="SHOPPING_LIST")
-@NamedQuery(name="ShoppingList.findAll", query="SELECT s FROM ShoppingList s")
-public class ShoppingList implements Serializable {
+@Table(name="SHOPPING_ITEM")
+@NamedQuery(name="ShoppingItem.findAll", query="SELECT s FROM ShoppingItem s")
+public class ShoppingItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private Integer id;
 
-	private String item;
+	@Column(nullable=false, length=100)
+	private String name;
 
+	@Column(nullable=false)
 	private Integer status;
 
 	//bi-directional many-to-one association to ShoppingUser
-	@ManyToOne
-	@JoinColumn(name="SHOPPING_USER_ID")
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="SHOPPING_USER_ID", nullable=false)
 	private ShoppingUser shoppingUser;
 
-	public ShoppingList() {
+	public ShoppingItem() {
 	}
 
 	public Integer getId() {
@@ -38,12 +41,12 @@ public class ShoppingList implements Serializable {
 		this.id = id;
 	}
 
-	public String getItem() {
-		return this.item;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setItem(String item) {
-		this.item = item;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Integer getStatus() {

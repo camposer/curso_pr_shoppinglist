@@ -17,15 +17,18 @@ public class ShoppingUser implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private Integer id;
 
+	@Column(nullable=false, length=20)
 	private String login;
 
+	@Column(nullable=false, length=8)
 	private String password;
 
-	//bi-directional many-to-one association to ShoppingList
+	//bi-directional many-to-one association to ShoppingItem
 	@OneToMany(mappedBy="shoppingUser")
-	private List<ShoppingList> shoppingLists;
+	private List<ShoppingItem> shoppingItems;
 
 	public ShoppingUser() {
 	}
@@ -54,26 +57,26 @@ public class ShoppingUser implements Serializable {
 		this.password = password;
 	}
 
-	public List<ShoppingList> getShoppingLists() {
-		return this.shoppingLists;
+	public List<ShoppingItem> getShoppingItems() {
+		return this.shoppingItems;
 	}
 
-	public void setShoppingLists(List<ShoppingList> shoppingLists) {
-		this.shoppingLists = shoppingLists;
+	public void setShoppingItems(List<ShoppingItem> shoppingItems) {
+		this.shoppingItems = shoppingItems;
 	}
 
-	public ShoppingList addShoppingList(ShoppingList shoppingList) {
-		getShoppingLists().add(shoppingList);
-		shoppingList.setShoppingUser(this);
+	public ShoppingItem addShoppingItem(ShoppingItem shoppingItem) {
+		getShoppingItems().add(shoppingItem);
+		shoppingItem.setShoppingUser(this);
 
-		return shoppingList;
+		return shoppingItem;
 	}
 
-	public ShoppingList removeShoppingList(ShoppingList shoppingList) {
-		getShoppingLists().remove(shoppingList);
-		shoppingList.setShoppingUser(null);
+	public ShoppingItem removeShoppingItem(ShoppingItem shoppingItem) {
+		getShoppingItems().remove(shoppingItem);
+		shoppingItem.setShoppingUser(null);
 
-		return shoppingList;
+		return shoppingItem;
 	}
 
 }
