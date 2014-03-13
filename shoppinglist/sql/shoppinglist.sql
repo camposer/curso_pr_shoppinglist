@@ -18,4 +18,8 @@ CREATE TABLE shopping_item(
 	FOREIGN KEY (shopping_user_id) REFERENCES shopping_user(id)
 );
 
+INSERT INTO shopping_item(shopping_user_id, name, status)
+VALUES(1, 'Harina', 0);
+INSERT INTO shopping_item(shopping_user_id, name, status)
+VALUES(2, 'Huevos', 0);
 

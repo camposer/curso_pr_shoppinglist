@@ -9,11 +9,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 public abstract class BaseDao<T, K> implements IDao<T, K> {
 	@Autowired
-	@Qualifier("entityManager") // Indica el id del bean para Spring
 	@PersistenceContext // Le dice a Spring que gestione el EntityManager
 	protected EntityManager em;
 	protected Class<T> clase;

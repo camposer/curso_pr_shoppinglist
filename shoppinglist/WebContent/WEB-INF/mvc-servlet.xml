@@ -10,6 +10,6 @@
 	<context:annotation-config/><!-- Activa anotaciones en Spring -->
 	<context:spring-configured/><!-- Activa ID por Autowired -->
 	<context:component-scan 
-		base-package="es.indra.formacion.pr.shoppinglist.front"/>
+		base-package="es.indra.formacion.pr.shoppinglist.front.controller"/>
 
 </beans>

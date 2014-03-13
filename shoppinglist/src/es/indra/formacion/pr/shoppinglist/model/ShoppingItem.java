@@ -65,4 +65,12 @@ public class ShoppingItem implements Serializable {
 		this.shoppingUser = shoppingUser;
 	}
 
+	@Override
+	public String toString() {
+		return "ShoppingItem [id=" + id + ", name=" + name + ", status="
+				+ status + ", shoppingUser=" + shoppingUser + "]";
+	}
+	
+	
+
 }

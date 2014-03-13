@@ -47,12 +47,15 @@ public class ShoppingListService implements IShoppingListService {
 	public void cambiarEstado(Integer itemId) {
 		ShoppingItem item = itemDao.obtener(itemId);
 		
+		System.out.println(item);
+
 		if (item.getStatus().equals(ShoppingItemStatus.ACTIVO.ordinal())) {
 			item.setStatus(ShoppingItemStatus.INACTIVO.ordinal());
 		} else {
 			item.setStatus(ShoppingItemStatus.ACTIVO.ordinal());			
 		}
 		
+		System.out.println(item);
 		itemDao.modificar(item);
 	}
 
